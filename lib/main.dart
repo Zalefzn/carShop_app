@@ -15,7 +15,7 @@ class CarShop extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       routes: {
-        '/splashScreen': (context) => const SplashScreen(),
+        '/': (context) => const SplashScreen(),
         '/bannerPage': (context) => const BannerPage(),
         '/loginPage': (context) => const LoginPage(),
       },

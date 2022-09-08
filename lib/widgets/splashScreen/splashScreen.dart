@@ -24,8 +24,8 @@ class _Splash extends State<SplashScreen> {
       backgroundColor: Colors.black,
       body: Center(
         child: Container(
-          height: 60,
-          width: 60,
+          height: 260,
+          width: 260,
           child: const Center(
               child: Text('CFL',
                   style: TextStyle(
