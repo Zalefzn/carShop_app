@@ -7,7 +7,7 @@ class BannerPage extends StatefulWidget {
   @override
   State<BannerPage> createState() => _Banner();
 }
-
+ 
 class _Banner extends State<BannerPage> {
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class _Banner extends State<BannerPage> {
 
     Widget headers() {
       return Container();
-    }
+    } 
 
     return Scaffold(
       backgroundColor: Colors.black,
