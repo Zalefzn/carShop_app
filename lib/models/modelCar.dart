@@ -28,4 +28,16 @@ class CarModel {
     carVin = json['car_vin'];
     price = json['price'];
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "id": id,
+      "car": car,
+      "car_model": carModel,
+      "car_color": carColor,
+      "car_model_year": carModelYear,
+      "car_vin": carVin,
+      "price": price,
+    };
+  }
 }
