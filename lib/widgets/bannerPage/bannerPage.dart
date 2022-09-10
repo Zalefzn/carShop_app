@@ -57,11 +57,34 @@ class _Banner extends State<BannerPage> with WidgetsBindingObserver {
       );
     }
 
+    Widget textData() {
+      return Container(
+        margin: EdgeInsets.only(right: SizeConfig.blockHorizontal * 30),
+        child: const Text('Hallo world',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 14,
+              fontWeight: FontWeight.w800,
+            )),
+      );
+    }
+
+    Widget contentData() {
+      return Container();
+    }
+
+    Widget buttonText() {
+      return Container();
+    }
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: Column(
         children: [
           headers(),
+          textData(),
+          contentData(),
+          buttonText(),
         ],
       ),
     );

@@ -24,6 +24,7 @@ class _Splash extends State<SplashScreen> {
       backgroundColor: Colors.black,
       body: Center(
         child: Container(
+          margin: const EdgeInsets.all(0),
           height: 260,
           width: 260,
           child: const Center(
