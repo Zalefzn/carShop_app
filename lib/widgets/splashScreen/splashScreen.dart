@@ -11,7 +11,7 @@ class _Splash extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(
-        const Duration(seconds: 2),
+        const Duration(seconds: 3),
         () => Navigator.pushNamedAndRemoveUntil(
             context, '/bannerPage', (route) => false));
     super.initState();
@@ -21,18 +21,22 @@ class _Splash extends State<SplashScreen> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: Center(
         child: Container(
           margin: const EdgeInsets.all(0),
           height: 260,
           width: 260,
-          child: const Center(
-              child: Text('CFL',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold))),
+          child: Center(
+            child: Container(
+              height: 120,
+              width: 120,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover, image: AssetImage('assets/logo.png')),
+              ),
+            ),
+          ),
         ),
       ),
     );

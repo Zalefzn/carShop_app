@@ -11,8 +11,8 @@
     <application
        
         android:name="io.flutter.app.FlutterApplication"
-        android:label="Cshop"
-        android:icon="@mipmap/sigap">
+        android:label="Auto Shop"
+        android:icon="@mipmap/logo">
        
         <activity
             android:name=".MainActivity"
