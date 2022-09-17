@@ -1,3 +1,4 @@
+import 'package:car_shop/screen/fromField.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';
 import 'package:car_shop/utilities/theme/colorTheme.dart';
 import 'package:flutter/material.dart';
@@ -16,12 +17,11 @@ class _Login extends State<LoginPage> {
 
     Widget headers() {
       return Container(
-        height: SizeConfig.blockVertical * 30,
+        height: SizeConfig.blockVertical * 27,
         width: SizeConfig.blockHorizontal * 100,
-        decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius:
-                const BorderRadius.only(bottomLeft: Radius.circular(100))),
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100))),
       );
     }
 
@@ -51,6 +51,51 @@ class _Login extends State<LoginPage> {
       );
     }
 
+    Widget textField() {
+      return SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: SizeConfig.blockVertical * 40),
+            FromField(false, "Username"),
+            SizedBox(height: SizeConfig.blockVertical * 5),
+            FromField(true, "Password"),
+          ],
+        ),
+      );
+    }
+
+    Widget checkList() {
+      return Row(
+        children: [
+          Container(
+            height: 20,
+            width: 20,
+            decoration: BoxDecoration(),
+          ),
+        ],
+      );
+    }
+
+    Widget buttonNavigate() {
+      return Center(
+        child: Container(
+            margin: EdgeInsets.only(top: SizeConfig.blockHorizontal * 110),
+            height: SizeConfig.blockVertical * 8,
+            width: SizeConfig.blockHorizontal * 80,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(30)),
+            child: TextButton(
+                onPressed: () {},
+                child: const Text('Login',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    )))),
+      );
+    }
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -58,6 +103,8 @@ class _Login extends State<LoginPage> {
           children: [
             headers(),
             textWelcome(),
+            textField(),
+            buttonNavigate(),
           ],
         ),
       ),

@@ -47,7 +47,7 @@ class _Banner extends State<BannerPage> with WidgetsBindingObserver {
             top: SizeConfig.blockVertical * 20,
             right: SizeConfig.blockHorizontal * 20),
         height: SizeConfig.blockVertical * 30,
-        width: SizeConfig.blockHorizontal * 80,
+        width: SizeConfig.blockHorizontal * 100,
         decoration: BoxDecoration(
           image: const DecorationImage(
             fit: BoxFit.cover,
