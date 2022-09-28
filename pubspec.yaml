@@ -65,6 +65,8 @@ flutter:
   assets:
     - assets/ferarri.png
     - assets/logo.png
+    - assets/grid.png
+    - assets/list.png
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

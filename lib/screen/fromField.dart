@@ -5,7 +5,7 @@ class FromField extends StatefulWidget {
   final bool scureText;
   final String hintText;
 
-  FromField(this.scureText, this.hintText, {Key? key}) : super(key: key);
+  const FromField(this.scureText, this.hintText, {Key? key}) : super(key: key);
 
   @override
   State<FromField> createState() => _From();

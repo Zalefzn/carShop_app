@@ -69,12 +69,46 @@ class _Login extends State<LoginPage> {
       return Row(
         children: [
           Container(
-            height: 20,
-            width: 20,
-            decoration: BoxDecoration(),
+            margin: EdgeInsets.only(
+                top: SizeConfig.blockVertical * 63,
+                left: SizeConfig.blockHorizontal * 11),
+            height: 13,
+            width: 13,
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: 1,
+                color: Colors.blue,
+              ),
+              color: Colors.grey.shade200,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(
+                top: SizeConfig.blockVertical * 63,
+                left: SizeConfig.blockHorizontal * 2),
+            child: const Text('Remember Me',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                )),
           ),
         ],
       );
+    }
+
+    Widget forgetPass() {
+      return Container(
+          margin: EdgeInsets.only(
+              top: SizeConfig.blockVertical * 81,
+              left: SizeConfig.blockHorizontal * 59),
+          child: TextButton(
+              onPressed: () {},
+              child: const Text('Forget Password ?',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500))));
     }
 
     Widget buttonNavigate() {
@@ -86,13 +120,46 @@ class _Login extends State<LoginPage> {
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/homePage');
+                },
                 child: const Text('Login',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     )))),
+      );
+    }
+
+    Widget textRegister() {
+      return GestureDetector(
+        onTap: () {
+          Navigator.pushNamed(context, '/regisPage');
+        },
+        child: Container(
+          margin: EdgeInsets.only(right: SizeConfig.blockHorizontal * 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                margin: EdgeInsets.only(
+                  top: SizeConfig.blockVertical * 89,
+                ),
+                child: const Text('Create Account Here',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                    )),
+              ),
+              SizedBox(width: SizeConfig.blockHorizontal * 5),
+              Container(
+                  margin: EdgeInsets.only(top: SizeConfig.blockVertical * 89),
+                  child: const Icon(Icons.arrow_forward_ios_rounded,
+                      color: Colors.white)),
+            ],
+          ),
+        ),
       );
     }
 
@@ -104,7 +171,10 @@ class _Login extends State<LoginPage> {
             headers(),
             textWelcome(),
             textField(),
+            checkList(),
             buttonNavigate(),
+            forgetPass(),
+            textRegister(),
           ],
         ),
       ),
