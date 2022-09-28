@@ -1,15 +1,15 @@
 import 'package:car_shop/screen/fromField.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';
-import 'package:car_shop/widgets/homePage/gridHome.dart';
+import 'package:car_shop/widgets/homePage/homePage.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class GridHome extends StatefulWidget {
+  const GridHome({Key? key}) : super(key: key);
   @override
-  State<HomePage> createState() => _Home();
+  State<GridHome> createState() => _Grid();
 }
 
-class _Home extends State<HomePage> {
+class _Grid extends State<GridHome> {
   @override
   Widget build(BuildContext context) {
     Widget headers() {
@@ -86,33 +86,29 @@ class _Home extends State<HomePage> {
           ),
           Row(
             children: [
+              Container(
+                  height: 30,
+                  width: 30,
+                  child: const Image(image: AssetImage('assets/grid.png'))),
+              SizedBox(
+                width: SizeConfig.blockHorizontal * 2,
+              ),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const GridHome()));
+                          builder: (context) => const HomePage()));
                 },
                 child: Container(
                     height: 30,
                     width: 30,
-                    child: const Image(image: AssetImage('assets/grid.png'))),
-              ),
-              SizedBox(
-                width: SizeConfig.blockHorizontal * 2,
-              ),
-              Container(
-                  height: 30,
-                  width: 30,
-                  child: const Image(image: AssetImage('assets/list.png')))
+                    child: const Image(image: AssetImage('assets/list.png'))),
+              )
             ],
           )
         ],
       );
-    }
-
-    Widget listViewData() {
-      return Column();
     }
 
     SizeConfig().init(context);
@@ -123,7 +119,6 @@ class _Home extends State<HomePage> {
         contentSearch(),
         SizedBox(height: SizeConfig.blockVertical * 3),
         contentUnder(),
-        listViewData(),
       ],
     ));
   }

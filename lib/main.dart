@@ -1,6 +1,7 @@
 import 'package:car_shop/widgets/bannerPage/bannerPage.dart';
 import 'package:car_shop/widgets/homePage/homePage.dart';
 import 'package:car_shop/widgets/splashScreen/splashScreen.dart';
+import 'package:car_shop/widgets/wishList/wishList.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/loginPage/loginPage.dart';
@@ -22,6 +23,7 @@ class CarShop extends StatelessWidget {
         '/loginPage': (context) => const LoginPage(),
         '/regisPage': (context) => const RegisPage(),
         '/homePage': (context) => const HomePage(),
+        '/wishList': (context) => const WishList(),
       },
     );
   }
