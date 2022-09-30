@@ -1,5 +1,7 @@
 import 'package:car_shop/screen/fromField.dart';
+import 'package:car_shop/screen/listScroll.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';
+import 'package:car_shop/widgets/detailPage/detailPage.dart';
 import 'package:car_shop/widgets/homePage/gridHome.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +48,7 @@ class _Home extends State<HomePage> {
       return Column(
         children: [
           Container(
-            margin: EdgeInsets.only(top: SizeConfig.blockVertical * 5),
+            margin: EdgeInsets.only(top: SizeConfig.blockVertical * 4),
             height: SizeConfig.blockVertical * 7,
             width: SizeConfig.blockHorizontal * 88,
             child: TextFormField(
@@ -54,6 +56,8 @@ class _Home extends State<HomePage> {
                 color: Colors.white,
               ),
               decoration: InputDecoration(
+                prefixIconColor: Colors.black,
+                prefixIcon: Icon(Icons.search),
                 hintText: 'Search Here...',
                 hintStyle: TextStyle(color: Colors.grey[700]),
                 border: OutlineInputBorder(
@@ -112,19 +116,42 @@ class _Home extends State<HomePage> {
     }
 
     Widget listViewData() {
-      return Column();
+      return Container(
+        height: SizeConfig.blockVertical * 64,
+        width: SizeConfig.blockHorizontal * 90,
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          children: [
+            GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DetailPage()));
+                },
+                child: ListScroll()),
+            ListScroll(),
+            ListScroll(),
+            ListScroll(),
+            ListScroll(),
+            ListScroll(),
+          ],
+        ),
+      );
     }
 
     SizeConfig().init(context);
-    return Scaffold(
-        body: ListView(
-      children: [
-        headers(),
-        contentSearch(),
-        SizedBox(height: SizeConfig.blockVertical * 3),
-        contentUnder(),
-        listViewData(),
-      ],
-    ));
+    return SafeArea(
+      child: Scaffold(
+          body: Column(
+        children: [
+          headers(),
+          contentSearch(),
+          SizedBox(height: SizeConfig.blockVertical * 2),
+          contentUnder(),
+          listViewData(),
+        ],
+      )),
+    );
   }
 }

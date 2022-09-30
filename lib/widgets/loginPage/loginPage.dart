@@ -121,7 +121,8 @@ class _Login extends State<LoginPage> {
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
             child: TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/homePage');
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/homePage', (route) => false);
                 },
                 child: const Text('Login',
                     style: TextStyle(

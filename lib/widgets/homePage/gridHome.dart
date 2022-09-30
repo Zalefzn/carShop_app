@@ -54,6 +54,8 @@ class _Grid extends State<GridHome> {
                 color: Colors.white,
               ),
               decoration: InputDecoration(
+                  prefixIconColor: Colors.black,
+                prefixIcon: Icon(Icons.search),
                 hintText: 'Search Here...',
                 hintStyle: TextStyle(color: Colors.grey[700]),
                 border: OutlineInputBorder(
@@ -112,14 +114,16 @@ class _Grid extends State<GridHome> {
     }
 
     SizeConfig().init(context);
-    return Scaffold(
-        body: ListView(
-      children: [
-        headers(),
-        contentSearch(),
-        SizedBox(height: SizeConfig.blockVertical * 3),
-        contentUnder(),
-      ],
-    ));
+    return SafeArea(
+      child: Scaffold(
+          body: ListView(
+        children: [
+          headers(),
+          contentSearch(),
+          SizedBox(height: SizeConfig.blockVertical * 3),
+          contentUnder(),
+        ],
+      )),
+    );
   }
 }

@@ -72,7 +72,8 @@ class _Regis extends State<RegisPage> {
                 color: Colors.white, borderRadius: BorderRadius.circular(30)),
             child: TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/homePage');
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/homePage', (route) => false);
                 },
                 child: const Text('Register',
                     style: TextStyle(
