@@ -10,6 +10,10 @@ class RegisPage extends StatefulWidget {
 }
 
 class _Regis extends State<RegisPage> {
+  final TextEditingController userName = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Widget head() {
@@ -52,11 +56,11 @@ class _Regis extends State<RegisPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: SizeConfig.blockVertical * 40),
-            const FromField(false, 'Username'),
+            FromField(false, 'Username', userName),
             SizedBox(height: SizeConfig.blockVertical * 5),
-            const FromField(false, "Email"),
+            FromField(false, "Email", email),
             SizedBox(height: SizeConfig.blockVertical * 5),
-            const FromField(true, 'Password')
+            FromField(true, 'Password', password)
           ],
         ),
       );

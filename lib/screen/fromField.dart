@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 class FromField extends StatefulWidget {
   final bool scureText;
   final String hintText;
+  final TextEditingController controller;
 
-  const FromField(this.scureText, this.hintText, {Key? key}) : super(key: key);
+  const FromField(this.scureText, this.hintText, this.controller, {Key? key})
+      : super(key: key);
 
   @override
   State<FromField> createState() => _From();
@@ -20,6 +22,7 @@ class _From extends State<FromField> {
       height: SizeConfig.blockVertical * 8,
       width: SizeConfig.blockHorizontal * 80,
       child: TextFormField(
+        controller: widget.controller,
         obscureText: widget.scureText,
         style: const TextStyle(
           color: Colors.white,

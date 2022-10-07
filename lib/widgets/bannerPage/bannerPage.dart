@@ -50,7 +50,6 @@ class _Banner extends State<BannerPage> with WidgetsBindingObserver {
         width: SizeConfig.blockHorizontal * 100,
         decoration: BoxDecoration(
           image: const DecorationImage(
-            fit: BoxFit.cover,
             image: AssetImage('assets/ferarri.png'),
           ),
           borderRadius: BorderRadius.circular(30),

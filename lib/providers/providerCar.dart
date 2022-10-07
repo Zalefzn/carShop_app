@@ -3,7 +3,7 @@ import 'package:car_shop/models/modelCar.dart';
 import 'package:flutter/material.dart';
 
 class ProviderCar with ChangeNotifier {
-  List<CarModel> _getCar = [];
+  final List<CarModel> _getCar = [];
 
   List<CarModel> get cars => _getCar;
 

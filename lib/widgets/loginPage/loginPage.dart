@@ -11,6 +11,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _Login extends State<LoginPage> {
+  final TextEditingController userName = TextEditingController();
+  final TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
@@ -57,9 +60,9 @@ class _Login extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: SizeConfig.blockVertical * 40),
-            FromField(false, "Username"),
+            FromField(false, "Username", userName),
             SizedBox(height: SizeConfig.blockVertical * 5),
-            FromField(true, "Password"),
+            FromField(true, "Password", password),
           ],
         ),
       );

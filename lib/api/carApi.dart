@@ -16,7 +16,7 @@ class CarApi {
     print(responseBody.body);
 
     if (responseBody.statusCode == 200) {
-      List data = jsonDecode(responseBody.body);
+      List data = jsonDecode(responseBody.body)['cars'];
 
       List<CarModel> getCars = [];
       for (var item in data) {
