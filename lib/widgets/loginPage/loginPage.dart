@@ -1,6 +1,8 @@
+import 'package:car_shop/providers/providerCar.dart';
 import 'package:car_shop/screen/fromField.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';
 import 'package:car_shop/utilities/theme/colorTheme.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -13,6 +15,15 @@ class LoginPage extends StatefulWidget {
 class _Login extends State<LoginPage> {
   final TextEditingController userName = TextEditingController();
   final TextEditingController password = TextEditingController();
+
+  void initState() {
+    getDataCar();
+    super.initState();
+  }
+
+  getDataCar() async {
+    await Provider.of<ProviderCar>(context, listen: false).getCars();
+  }
 
   @override
   Widget build(BuildContext context) {
