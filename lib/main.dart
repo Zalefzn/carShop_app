@@ -1,4 +1,5 @@
 import 'package:car_shop/providers/providerCar.dart';
+import 'package:car_shop/providers/wishList_Provider.dart';
 import 'package:car_shop/widgets/bannerPage/bannerPage.dart';
 import 'package:car_shop/widgets/homePage/homePage.dart';
 import 'package:car_shop/widgets/splashScreen/splashScreen.dart';
@@ -24,7 +25,10 @@ class CarShop extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => UserProvider(),
         ),
-        ChangeNotifierProvider(create: (context) => ProviderCar())
+        ChangeNotifierProvider(
+          create: (context) => ProviderCar(),
+        ),
+        ChangeNotifierProvider(create: (context) => WishListProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

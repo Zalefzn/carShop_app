@@ -1,9 +1,9 @@
-import 'package:car_shop/screen/fromField.dart';
+import 'package:car_shop/providers/providerCar.dart';
 import 'package:car_shop/screen/listScroll.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';
-import 'package:car_shop/widgets/detailPage/detailPage.dart';
 import 'package:car_shop/widgets/homePage/gridHome.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,6 +14,8 @@ class HomePage extends StatefulWidget {
 class _Home extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    ProviderCar providerCar = Provider.of<ProviderCar>(context);
+
     Widget headers() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -121,21 +123,9 @@ class _Home extends State<HomePage> {
         width: SizeConfig.blockHorizontal * 90,
         child: ListView(
           scrollDirection: Axis.vertical,
-          children: [
-            GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const DetailPage()));
-                },
-                child: ListScroll()),
-            ListScroll(),
-            ListScroll(),
-            ListScroll(),
-            ListScroll(),
-            ListScroll(),
-          ],
+          children: providerCar.getCar
+              .map((carModel) => ListScroll(carModel))
+              .toList(),
         ),
       );
     }

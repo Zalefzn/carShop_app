@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class CarModel {
-  late String id;
+  late int id;
   late String car;
   late String carModel;
   late String carColor;
-  late String carModelYear;
+  late int carModelYear;
   late String carVin;
   late String price;
 

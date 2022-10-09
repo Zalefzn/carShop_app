@@ -5,7 +5,7 @@ import 'package:car_shop/models/modelUser.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class UseApi {
+class UserApi {
   Future<List<UserModel>> getUser() async {
     var getUsers = '$getApiUser';
     var headers = {
@@ -16,7 +16,7 @@ class UseApi {
     print(responseBody.body);
 
     List<UserModel> getDatUser = [];
-    if (responseBody == 200) {
+    if (responseBody.statusCode == 200) {
       List datUser = jsonDecode(responseBody.body)['Users'];
       for (var item in datUser) {
         getDatUser.add(UserModel.fromJson(item));

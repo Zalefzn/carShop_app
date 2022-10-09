@@ -3,17 +3,20 @@ import 'package:car_shop/models/modelCar.dart';
 import 'package:flutter/material.dart';
 
 class ProviderCar with ChangeNotifier {
-  final List<CarModel> _getCar = [];
+  List<CarModel> _getCar = [];
 
-  List<CarModel> get cars => _getCar;
+  List<CarModel> get getCar => _getCar;
 
-  set cars(List<CarModel> car) {
+  set getCar(List<CarModel> car) {
+    _getCar = car;
     notifyListeners();
   }
 
   Future<void> getCars() async {
     try {
-      List<CarModel> carModel = await CarApi().getModel();
+      List<CarModel> car = await CarApi().getModel();
+
+      _getCar = car;
     } catch (e) {
       print(e);
     }

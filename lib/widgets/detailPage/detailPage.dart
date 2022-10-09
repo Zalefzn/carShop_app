@@ -1,9 +1,12 @@
+import 'package:car_shop/models/modelCar.dart';
 import 'package:car_shop/screen/listComment.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({Key? key}) : super(key: key);
+  final CarModel carModel;
+
+  const DetailPage(this.carModel, {Key? key}) : super(key: key);
 
   @override
   State<DetailPage> createState() => _Detail();
@@ -12,19 +15,27 @@ class DetailPage extends StatefulWidget {
 class _Detail extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
+    var getDataCar = widget.carModel.car;
+
     Widget contentHead() {
       return Stack(
         children: [
           Center(
             child: Container(
-              margin: EdgeInsets.only(top: SizeConfig.blockVertical * 4),
-              height: SizeConfig.blockVertical * 40,
-              width: SizeConfig.blockHorizontal * 80,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.grey.shade300,
-              ),
-            ),
+                margin: EdgeInsets.only(top: SizeConfig.blockVertical * 4),
+                height: SizeConfig.blockVertical * 40,
+                width: SizeConfig.blockHorizontal * 80,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.grey.shade300,
+                ),
+                child: Center(
+                  child: Text(getDataCar,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold)),
+                )),
           ),
           Container(
             margin: EdgeInsets.only(
@@ -56,8 +67,8 @@ class _Detail extends State<DetailPage> {
             ),
             SizedBox(height: SizeConfig.blockVertical * 2),
             Container(
-              child: const Text(
-                  'warna mobil ini adalah warnan kuning\nkecepatan mobil ini bisa menempuh\n300Km/jam, dengan adanya hemat bensin\nmobil ini akan menghemat biaya anda\nsetiap harinya',
+              child: Text(
+                  'car : ${widget.carModel.car}\nmodel : ${widget.carModel.carModel}\ncolor : ${widget.carModel.carColor}\nyear : ${widget.carModel.carModelYear.toString()}\nprice : ${widget.carModel.price}',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 13,
@@ -75,6 +86,7 @@ class _Detail extends State<DetailPage> {
                 ),
               ),
             ),
+            SizedBox(height: SizeConfig.blockVertical * 1),
           ],
         ),
       );
