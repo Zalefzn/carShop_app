@@ -12,9 +12,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _Home extends State<HomePage> {
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     ProviderCar providerCar = Provider.of<ProviderCar>(context);
+
+    onSearchTextChanged(String text) async {
+      providerCar.getCarSearch.clear();
+      if (text.isEmpty) {
+        setState(() {});
+        return;
+      }
+
+      providerCar.getCar.forEach((data) {
+        if (data.car.toLowerCase().contains(text) ||
+            data.carModel.toString().contains(text))
+          providerCar.getCarSearch.add(data);
+      });
+
+      setState(() {});
+    }
 
     Widget headers() {
       return Row(
@@ -54,12 +71,13 @@ class _Home extends State<HomePage> {
             height: SizeConfig.blockVertical * 7,
             width: SizeConfig.blockHorizontal * 88,
             child: TextFormField(
+              onChanged: onSearchTextChanged,
               style: const TextStyle(
-                color: Colors.white,
+                color: Colors.black,
               ),
               decoration: InputDecoration(
                 prefixIconColor: Colors.black,
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
                 hintText: 'Search Here...',
                 hintStyle: TextStyle(color: Colors.grey[700]),
                 border: OutlineInputBorder(
@@ -123,9 +141,14 @@ class _Home extends State<HomePage> {
         width: SizeConfig.blockHorizontal * 90,
         child: ListView(
           scrollDirection: Axis.vertical,
-          children: providerCar.getCar
-              .map((carModel) => ListScroll(carModel))
-              .toList(),
+          children: providerCar.getCarSearch.length != 0 ||
+                  controller.text.toLowerCase().isNotEmpty
+              ? providerCar.getCarSearch
+                  .map((carModel) => ListScroll(carModel))
+                  .toList()
+              : providerCar.getCar
+                  .map((carModel) => ListScroll(carModel))
+                  .toList(),
         ),
       );
     }
@@ -133,14 +156,16 @@ class _Home extends State<HomePage> {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-          body: Column(
-        children: [
-          headers(),
-          contentSearch(),
-          SizedBox(height: SizeConfig.blockVertical * 2),
-          contentUnder(),
-          listViewData(),
-        ],
+          body: SingleChildScrollView(
+        child: Column(
+          children: [
+            headers(),
+            contentSearch(),
+            SizedBox(height: SizeConfig.blockVertical * 2),
+            contentUnder(),
+            listViewData(),
+          ],
+        ),
       )),
     );
   }

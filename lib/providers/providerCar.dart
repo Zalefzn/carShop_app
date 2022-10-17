@@ -21,4 +21,23 @@ class ProviderCar with ChangeNotifier {
       print(e);
     }
   }
+
+  List<CarModel> _getCarSearch = [];
+
+  List<CarModel> get getCarSearch => _getCarSearch;
+
+  set getCarSearch(List<CarModel> search) {
+    _getCarSearch = search;
+    notifyListeners();
+  }
+
+  Future<void> getCarsSearch() async {
+    try {
+      List<CarModel> carSearch = await CarApi().getModel();
+
+      _getCarSearch = carSearch;
+    } catch (e) {
+      print(e);
+    }
+  }
 }

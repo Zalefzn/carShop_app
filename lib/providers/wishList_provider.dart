@@ -6,8 +6,8 @@ class WishListProvider with ChangeNotifier {
 
   List<CarModel> get wishList => _carModel;
 
-  set wishList(List<CarModel> wishList) {
-    _carModel = wishList;
+  set wishList(List<CarModel> wishLists) {
+    _carModel = wishLists;
     notifyListeners();
   }
 

@@ -1,7 +1,11 @@
 import 'package:car_shop/models/modelCar.dart';
+import 'package:car_shop/providers/userProvider.dart';
+import 'package:car_shop/providers/wishList_provider.dart';
 import 'package:car_shop/screen/listComment.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';
+import 'package:car_shop/widgets/wishList/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DetailPage extends StatefulWidget {
   final CarModel carModel;
@@ -16,6 +20,8 @@ class _Detail extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     var getDataCar = widget.carModel.car;
+    WishListProvider wishListProvider = Provider.of<WishListProvider>(context);
+    UserProvider userProvider = Provider.of<UserProvider>(context);
 
     Widget contentHead() {
       return Stack(
@@ -38,11 +44,37 @@ class _Detail extends State<DetailPage> {
                 )),
           ),
           Container(
-            margin: EdgeInsets.only(
-                top: SizeConfig.blockVertical * 7,
-                left: SizeConfig.blockHorizontal * 80),
-            child: const Icon(Icons.bookmark, color: Colors.grey),
-          ),
+              margin: EdgeInsets.only(
+                  top: SizeConfig.blockVertical * 6,
+                  left: SizeConfig.blockHorizontal * 75),
+              height: 30,
+              width: 30,
+              child: GestureDetector(
+                onTap: () {
+                  wishListProvider.setProductCar(widget.carModel);
+
+                  if (wishListProvider.isWishlist(widget.carModel)) {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      backgroundColor: Colors.green,
+                      content: Text(
+                        'Has Been Added',
+                        textAlign: TextAlign.center,
+                      ),
+                    ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      backgroundColor: Colors.red,
+                      content: Text(
+                        'Has Been Removed',
+                        textAlign: TextAlign.center,
+                      ),
+                    ));
+                  }
+                },
+                child: Image.asset(wishListProvider.isWishlist(widget.carModel)
+                    ? 'assets/love2.png'
+                    : 'assets/love1.png'),
+              )),
         ],
       );
     }
@@ -78,7 +110,7 @@ class _Detail extends State<DetailPage> {
             SizedBox(height: SizeConfig.blockVertical * 2),
             Container(
               child: const Text(
-                'Comment :',
+                'Sales :',
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -97,13 +129,8 @@ class _Detail extends State<DetailPage> {
         height: SizeConfig.blockVertical * 30,
         child: ListView(
           scrollDirection: Axis.vertical,
-          children: const [
-            ListComment(),
-            ListComment(),
-            ListComment(),
-            ListComment(),
-            ListComment(),
-          ],
+          children:
+              userProvider.users.map((user) => ListComment(user)).toList(),
         ),
       );
     }
@@ -122,7 +149,12 @@ class _Detail extends State<DetailPage> {
                 color: Colors.black,
               ),
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const OrderList()));
+                  },
                   child: const Text('Order',
                       style: TextStyle(
                           color: Colors.white,

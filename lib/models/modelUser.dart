@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class UserModel {
-  int? id;
-  String? firstName;
-  String? lastName;
-  String? email;
-  String? gender;
-  String? birthDay;
-  String? companyName;
-  String? departemnt;
-  String? jobTile;
-  String? phone;
-  String? avatar;
-  String? password;
+  late int? id;
+  late String? firstName;
+  late String? lastName;
+  late String? email;
+  late String? gender;
+  late String? birthDay;
+  late String? companyName;
+  late String? departemnt;
+  late String? jobTile;
+  late String? phone;
+  late String? avatar;
+  late String? password;
 
   UserModel({
     required this.id,

@@ -1,4 +1,5 @@
 import 'package:car_shop/screen/fromField.dart';
+import 'package:car_shop/screen/gridTile.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';
 import 'package:car_shop/widgets/homePage/homePage.dart';
 import 'package:flutter/material.dart';
@@ -51,11 +52,11 @@ class _Grid extends State<GridHome> {
             width: SizeConfig.blockHorizontal * 88,
             child: TextFormField(
               style: const TextStyle(
-                color: Colors.white,
+                color: Colors.black,
               ),
               decoration: InputDecoration(
-                  prefixIconColor: Colors.black,
-                prefixIcon: Icon(Icons.search),
+                prefixIconColor: Colors.black,
+                prefixIcon: const Icon(Icons.search),
                 hintText: 'Search Here...',
                 hintStyle: TextStyle(color: Colors.grey[700]),
                 border: OutlineInputBorder(
@@ -113,15 +114,43 @@ class _Grid extends State<GridHome> {
       );
     }
 
+    Widget bodyGrid() {
+      return Container(
+        height: SizeConfig.blockVertical * 63,
+        width: SizeConfig.blockHorizontal * 100,
+        child: GridView(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 2,
+          ),
+          children: const [
+            GridTiles(),
+            GridTiles(),
+            GridTiles(),
+            GridTiles(),
+            GridTiles(),
+            GridTiles(),
+            GridTiles(),
+            GridTiles(),
+            GridTiles(),
+            GridTiles(),
+            GridTiles(),
+            GridTiles(),
+          ],
+        ),
+      );
+    }
+
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-          body: ListView(
+          body: Column(
         children: [
           headers(),
           contentSearch(),
           SizedBox(height: SizeConfig.blockVertical * 3),
           contentUnder(),
+          bodyGrid(),
         ],
       )),
     );
