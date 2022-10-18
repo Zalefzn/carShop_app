@@ -1,8 +1,10 @@
+import 'package:car_shop/providers/providerCar.dart';
 import 'package:car_shop/screen/fromField.dart';
 import 'package:car_shop/screen/gridTile.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';
 import 'package:car_shop/widgets/homePage/homePage.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class GridHome extends StatefulWidget {
   const GridHome({Key? key}) : super(key: key);
@@ -11,8 +13,26 @@ class GridHome extends StatefulWidget {
 }
 
 class _Grid extends State<GridHome> {
+  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    ProviderCar providerCar = Provider.of<ProviderCar>(context);
+
+    onSearchTextChanged(String text) async {
+      providerCar.getCarSearch.clear();
+      if (text.isEmpty) {
+        setState(() {});
+        return;
+      }
+
+      providerCar.getCar.forEach((data) {
+        if (data.car.toLowerCase().contains(text) ||
+            data.carModel.toString().contains(text))
+          providerCar.getCarSearch.add(data);
+      });
+      setState(() {});
+    }
+
     Widget headers() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -116,29 +136,19 @@ class _Grid extends State<GridHome> {
 
     Widget bodyGrid() {
       return Container(
-        height: SizeConfig.blockVertical * 63,
-        width: SizeConfig.blockHorizontal * 100,
-        child: GridView(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          height: SizeConfig.blockVertical * 63,
+          width: SizeConfig.blockHorizontal * 100,
+          child: GridView.count(
             crossAxisCount: 2,
-            crossAxisSpacing: 2,
-          ),
-          children: const [
-            GridTiles(),
-            GridTiles(),
-            GridTiles(),
-            GridTiles(),
-            GridTiles(),
-            GridTiles(),
-            GridTiles(),
-            GridTiles(),
-            GridTiles(),
-            GridTiles(),
-            GridTiles(),
-            GridTiles(),
-          ],
-        ),
-      );
+            mainAxisSpacing: 1,
+            crossAxisSpacing: 1,
+            padding: const EdgeInsets.all(2),
+            childAspectRatio: 1,
+            children: providerCar.getCarSearch.length != 0 ||
+                    controller.text.toLowerCase().isNotEmpty
+                ? providerCar.getCarSearch.map((car) => GridTiles(car)).toList()
+                : providerCar.getCar.map((car) => GridTiles(car)).toList(),
+          ));
     }
 
     SizeConfig().init(context);

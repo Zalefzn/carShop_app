@@ -1,8 +1,11 @@
+import 'package:car_shop/models/modelCar.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';
+import 'package:car_shop/widgets/detailPage/detailPage.dart';
 import 'package:flutter/material.dart';
 
 class GridTiles extends StatefulWidget {
-  const GridTiles({Key? key}) : super(key: key);
+  final CarModel car;
+  const GridTiles(this.car, {Key? key}) : super(key: key);
   @override
   State<GridTiles> createState() => _Grid();
 }
@@ -12,13 +15,19 @@ class _Grid extends State<GridTiles> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Center(
-      child: Container(
-        margin: EdgeInsets.only(top: SizeConfig.blockVertical * 2),
-        height: SizeConfig.blockVertical * 30,
-        width: SizeConfig.blockHorizontal * 44,
-        decoration: BoxDecoration(
-          color: Colors.grey.shade300,
-          borderRadius: BorderRadius.circular(30),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => DetailPage(widget.car)));
+        },
+        child: Container(
+          margin: EdgeInsets.only(top: SizeConfig.blockVertical * 2),
+          height: SizeConfig.blockVertical * 30,
+          width: SizeConfig.blockHorizontal * 44,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade300,
+            borderRadius: BorderRadius.circular(30),
+          ),
         ),
       ),
     );
