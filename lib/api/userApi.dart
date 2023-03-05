@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, unused_import, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
+
 import 'dart:convert';
 
 import 'package:car_shop/api/apiParameter.dart';
@@ -7,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 class UserApi {
   Future<List<UserModel>> getUser() async {
-    var getUsers = '$getApiUser';
+    var getUsers = '${getApiUser}';
     var headers = {
       'Content-Type': 'application/json',
     };

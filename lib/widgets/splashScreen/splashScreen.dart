@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:car_shop/providers/providerCar.dart';
 import 'package:car_shop/providers/userProvider.dart';
 import 'package:car_shop/utilities/config/sizeConfig.dart';

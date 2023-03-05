@@ -24,6 +24,18 @@ class _Grid extends State<GridTiles> {
           margin: EdgeInsets.only(top: SizeConfig.blockVertical * 2),
           height: SizeConfig.blockVertical * 30,
           width: SizeConfig.blockHorizontal * 44,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                  child: Text(widget.car.car,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      )))
+            ],
+          ),
           decoration: BoxDecoration(
             color: Colors.grey.shade300,
             borderRadius: BorderRadius.circular(30),

@@ -71,6 +71,7 @@ class _Grid extends State<GridHome> {
             height: SizeConfig.blockVertical * 7,
             width: SizeConfig.blockHorizontal * 88,
             child: TextFormField(
+              onChanged: onSearchTextChanged,
               style: const TextStyle(
                 color: Colors.black,
               ),
@@ -154,14 +155,16 @@ class _Grid extends State<GridHome> {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-          body: Column(
-        children: [
-          headers(),
-          contentSearch(),
-          SizedBox(height: SizeConfig.blockVertical * 3),
-          contentUnder(),
-          bodyGrid(),
-        ],
+          body: SingleChildScrollView(
+        child: Column(
+          children: [
+            headers(),
+            contentSearch(),
+            SizedBox(height: SizeConfig.blockVertical * 3),
+            contentUnder(),
+            bodyGrid(),
+          ],
+        ),
       )),
     );
   }
